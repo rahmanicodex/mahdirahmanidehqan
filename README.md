@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -742,7 +742,7 @@
         <h2 class="section-title">درباره من</h2>
         <div class="about-content">
             <div class="about-img fade-in">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="مهدی رحمانی">
+                <img src="/4585c799-b6a1-449f-bb44-3270f5e59e27.jpeg" alt="مهدی رحمانی">
             </div>
             <div class="about-text fade-in delay-1">
                 <h3>مهندس نرم‌افزار و توسعه‌دهنده فول استک</h3>
