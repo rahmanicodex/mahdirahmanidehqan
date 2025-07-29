@@ -1,59 +1,87 @@
-<!DOCTYPE html>
+
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مهندس مهدی رحمانی | توسعه‌دهنده حرفه‌ای</title>
+    <title>مهندس مهدی رحمانی | توسعه‌دهنده فول استک</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --text-color: #333;
-            --text-light: #fff;
+            --primary-color: #5D5FEF;
+            --primary-light: #E0E1FF;
+            --secondary-color: #10B981;
+            --secondary-light: #D1FAE5;
+            --accent-color: #F59E0B;
+            --accent-light: #FEF3C7;
+            --dark-color: #1F2937;
+            --light-color: #F9FAFB;
+            --text-color: #374151;
+            --text-light: #F9FAFB;
+            --gray-light: #E5E7EB;
+            --gray-medium: #9CA3AF;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
+            font-family: 'Vazirmatn', sans-serif;
             background-color: var(--light-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+            font-weight: 400;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--dark-color);
         }
         
         /* نوار ناوبری */
         .navbar {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 1rem 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-sm);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+            padding: 0.8rem 2rem;
         }
         
         .logo {
             font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--text-light);
+            font-weight: 700;
+            color: var(--primary-color);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .logo span {
-            color: var(--secondary-color);
+        .logo i {
+            font-size: 1.4rem;
         }
         
         .nav-links {
@@ -62,19 +90,21 @@
         }
         
         .nav-links li {
-            margin-right: 1.5rem;
+            margin-right: 1.8rem;
         }
         
         .nav-links a {
-            color: var(--text-light);
+            color: var(--dark-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
             position: relative;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
         }
         
         .nav-links a:hover {
-            color: var(--secondary-color);
+            color: var(--primary-color);
         }
         
         .nav-links a::after {
@@ -82,10 +112,10 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background: var(--secondary-color);
-            bottom: -5px;
+            background: var(--primary-color);
+            bottom: 0;
             right: 0;
-            transition: width 0.3s;
+            transition: var(--transition);
         }
         
         .nav-links a:hover::after {
@@ -97,6 +127,8 @@
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
+            color: var(--dark-color);
+            z-index: 1001;
         }
         
         /* بخش هیرو */
@@ -105,128 +137,193 @@
             display: flex;
             align-items: center;
             padding: 0 10%;
-            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
-            color: var(--text-light);
+            background: linear-gradient(135deg, #f5f7fa 0%, #E0E1FF 100%);
             position: relative;
             overflow: hidden;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80') no-repeat center center/cover;
-            opacity: 0.2;
-            z-index: 0;
-        }
-        
         .hero-content {
+            max-width: 600px;
             position: relative;
             z-index: 1;
-            max-width: 600px;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
             line-height: 1.2;
+            color: var(--dark-color);
         }
         
         .hero h1 span {
-            color: var(--secondary-color);
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 12px;
+            background-color: var(--primary-light);
+            bottom: 8px;
+            right: 0;
+            z-index: -1;
+            border-radius: 4px;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
             opacity: 0.9;
+            max-width: 90%;
         }
         
         .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
             color: var(--text-light);
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
+            font-weight: 500;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(93, 95, 239, 0.2);
         }
         
         .btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background-color: #4B4DDB;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(93, 95, 239, 0.25);
         }
         
         .btn-outline {
             background-color: transparent;
-            border: 2px solid var(--secondary-color);
+            border: 1.5px solid var(--primary-color);
+            color: var(--primary-color);
             margin-right: 1rem;
+            box-shadow: none;
         }
         
         .btn-outline:hover {
-            background-color: var(--secondary-color);
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .hero-btns {
+            display: flex;
+            align-items: center;
         }
         
         .social-icons {
             display: flex;
-            margin-top: 2rem;
+            margin-top: 3rem;
+            gap: 1.2rem;
         }
         
         .social-icons a {
-            color: var(--text-light);
-            font-size: 1.5rem;
-            margin-right: 1.5rem;
-            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background-color: white;
+            color: var(--primary-color);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
         }
         
         .social-icons a:hover {
-            color: var(--secondary-color);
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .hero-shape {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(93, 95, 239, 0.1) 0%, rgba(93, 95, 239, 0.05) 100%);
+            top: -200px;
+            right: -200px;
+            z-index: 0;
+        }
+        
+        .hero-shape-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+            bottom: -100px;
+            left: -100px;
+            z-index: 0;
+            animation: float 8s ease-in-out infinite;
         }
         
         /* بخش درباره من */
         .about {
-            padding: 6rem 10%;
-            background-color: var(--text-light);
+            padding: 7rem 10%;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
         }
         
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
+            margin-bottom: 4rem;
+            color: var(--dark-color);
             position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .section-title::after {
             content: '';
             position: absolute;
-            width: 80px;
+            width: 60px;
             height: 4px;
-            background-color: var(--secondary-color);
-            bottom: -10px;
+            background-color: var(--primary-color);
+            bottom: -12px;
             right: 50%;
             transform: translateX(50%);
+            border-radius: 2px;
         }
         
         .about-content {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
         }
         
         .about-img {
             flex: 1;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+        
+        .about-img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .about-img img {
@@ -237,7 +334,7 @@
         }
         
         .about-img:hover img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         
         .about-text {
@@ -247,124 +344,188 @@
         .about-text h3 {
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
-            color: var(--primary-color);
+            color: var(--dark-color);
         }
         
         .about-text p {
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            color: var(--text-color);
+            line-height: 1.8;
         }
         
         .skills {
-            margin-top: 2rem;
+            margin-top: 2.5rem;
         }
         
         .skill-item {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
         
         .skill-name {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            color: var(--dark-color);
         }
         
         .skill-bar {
-            height: 10px;
-            background-color: #ddd;
-            border-radius: 5px;
+            height: 8px;
+            background-color: var(--gray-light);
+            border-radius: 4px;
             overflow: hidden;
         }
         
         .skill-progress {
             height: 100%;
-            background-color: var(--secondary-color);
-            border-radius: 5px;
+            background: linear-gradient(90deg, var(--primary-color), #7B7DF2);
+            border-radius: 4px;
             transition: width 1s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, 
+                            rgba(255,255,255,0.1) 0%, 
+                            rgba(255,255,255,0.4) 50%, 
+                            rgba(255,255,255,0.1) 100%);
+            animation: shine 2s infinite;
         }
         
         /* بخش خدمات */
         .services {
-            padding: 6rem 10%;
+            padding: 7rem 10%;
             background-color: var(--light-color);
+            position: relative;
         }
         
         .services-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
         
         .service-card {
-            background-color: var(--text-light);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: white;
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
             text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(93, 95, 239, 0.03) 0%, rgba(93, 95, 239, 0.01) 100%);
+            z-index: -1;
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
         }
         
         .service-icon {
-            font-size: 3rem;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.8rem;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            background-color: var(--primary-color);
+            color: white;
+            transform: rotateY(180deg);
         }
         
         .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: var(--dark-color);
+        }
+        
+        .service-card p {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
         
         /* بخش نمونه کارها */
         .portfolio {
-            padding: 6rem 10%;
-            background-color: var(--text-light);
+            padding: 7rem 10%;
+            background-color: white;
+            position: relative;
         }
         
         .portfolio-filter {
             display: flex;
             justify-content: center;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             flex-wrap: wrap;
+            gap: 0.8rem;
         }
         
         .filter-btn {
             background-color: transparent;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            margin: 0 0.5rem;
+            border: 1px solid var(--gray-light);
+            padding: 0.6rem 1.8rem;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
             color: var(--text-color);
-            transition: all 0.3s;
+            transition: var(--transition);
             border-radius: 30px;
+            font-family: 'Vazirmatn', sans-serif;
         }
         
         .filter-btn.active, .filter-btn:hover {
-            background-color: var(--secondary-color);
+            background-color: var(--primary-color);
             color: var(--text-light);
+            border-color: var(--primary-color);
         }
         
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
         }
         
         .portfolio-item {
             position: relative;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            height: 250px;
+            box-shadow: var(--shadow-sm);
+            height: 260px;
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover {
+            box-shadow: var(--shadow-lg);
         }
         
         .portfolio-img {
@@ -380,14 +541,14 @@
             right: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(52, 152, 219, 0.9);
+            background: linear-gradient(135deg, rgba(93, 95, 239, 0.9) 0%, rgba(73, 75, 219, 0.9) 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.3s;
-            padding: 1rem;
+            transition: var(--transition);
+            padding: 1.5rem;
             text-align: center;
             color: var(--text-light);
         }
@@ -397,29 +558,44 @@
         }
         
         .portfolio-item:hover .portfolio-img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         
         .portfolio-overlay h3 {
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .portfolio-overlay p {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
         }
         
         .portfolio-overlay a {
             color: var(--text-light);
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            transition: color 0.3s;
+            font-size: 1.2rem;
+            margin: 0 0.7rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .portfolio-overlay a:hover {
-            color: var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
         }
         
         /* بخش تماس */
         .contact {
-            padding: 6rem 10%;
+            padding: 7rem 10%;
             background-color: var(--light-color);
+            position: relative;
         }
         
         .contact-container {
@@ -438,34 +614,56 @@
             display: flex;
             align-items: flex-start;
             margin-bottom: 2rem;
-            background-color: var(--text-light);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
+            background-color: white;
+            padding: 1.8rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
         }
         
         .contact-card:hover {
             transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
         
         .contact-icon {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-            margin-left: 1rem;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-left: 1.5rem;
+            flex-shrink: 0;
         }
         
         .contact-text h3 {
             font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            color: var(--dark-color);
+        }
+        
+        .contact-text p, .contact-text a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        
+        .contact-text a:hover {
             color: var(--primary-color);
         }
         
         .contact-form {
-            background-color: var(--text-light);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.03);
         }
         
         .form-group {
@@ -474,88 +672,114 @@
         
         .form-control {
             width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            font-family: 'Vazirmatn', sans-serif;
         }
         
         .form-control:focus {
-            border-color: var(--secondary-color);
+            border-color: var(--primary-color);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.1);
         }
         
         textarea.form-control {
-            min-height: 150px;
+            min-height: 160px;
             resize: vertical;
         }
         
         /* فوتر */
         .footer {
-            background-color: var(--primary-color);
+            background-color: var(--dark-color);
             color: var(--text-light);
-            padding: 3rem 10%;
+            padding: 4rem 10% 2rem;
             text-align: center;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.02)" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>') repeat;
+            opacity: 0.1;
+            z-index: 0;
         }
         
         .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
         
         .footer-logo {
             font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
             color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .footer-logo span {
-            color: var(--secondary-color);
+        .footer-logo i {
+            font-size: 1.4rem;
+            color: var(--primary-color);
         }
         
         .footer-links {
             display: flex;
             list-style: none;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             flex-wrap: wrap;
             justify-content: center;
-        }
-        
-        .footer-links li {
-            margin: 0 1rem 1rem;
+            gap: 1.5rem;
         }
         
         .footer-links a {
             color: var(--text-light);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            opacity: 0.8;
         }
         
         .footer-links a:hover {
-            color: var(--secondary-color);
+            color: var(--primary-light);
+            opacity: 1;
         }
         
         .footer-social {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            gap: 1.2rem;
         }
         
         .footer-social a {
             color: var(--text-light);
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            transition: color 0.3s;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            opacity: 0.7;
         }
         
         .footer-social a:hover {
-            color: var(--secondary-color);
+            color: var(--primary-light);
+            opacity: 1;
+            transform: translateY(-3px);
         }
         
         .copyright {
-            opacity: 0.8;
+            opacity: 0.6;
             font-size: 0.9rem;
+            margin-top: 1.5rem;
         }
         
         /* دکمه بازگشت به بالا */
@@ -565,7 +789,7 @@
             right: 2rem;
             width: 50px;
             height: 50px;
-            background-color: var(--secondary-color);
+            background-color: var(--primary-color);
             color: var(--text-light);
             border-radius: 50%;
             display: flex;
@@ -575,8 +799,10 @@
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: var(--transition);
             z-index: 999;
+            box-shadow: var(--shadow-md);
+            border: none;
         }
         
         .back-to-top.active {
@@ -585,8 +811,8 @@
         }
         
         .back-to-top:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-5px);
+            background-color: var(--dark-color);
+            transform: translateY(-5px) scale(1.1);
         }
         
         /* انیمیشن ها */
@@ -595,16 +821,41 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .fade-in {
-            animation: fadeIn 1s ease-in-out forwards;
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
         
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
         
         /* رسپانسیو */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
         @media (max-width: 992px) {
             .about-content {
                 flex-direction: column;
@@ -615,8 +866,17 @@
                 width: 100%;
             }
             
+            .about-img {
+                max-width: 500px;
+                margin: 0 auto 3rem;
+            }
+            
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                max-width: 100%;
             }
         }
         
@@ -627,15 +887,16 @@
             
             .nav-links {
                 position: fixed;
-                top: 70px;
+                top: 0;
                 right: -100%;
-                width: 80%;
-                height: calc(100vh - 70px);
-                background-color: var(--primary-color);
+                width: 280px;
+                height: 100vh;
+                background-color: white;
                 flex-direction: column;
-                align-items: center;
-                padding-top: 2rem;
-                transition: right 0.3s;
+                align-items: flex-start;
+                padding: 6rem 2rem 2rem;
+                transition: right 0.4s ease-in-out;
+                box-shadow: var(--shadow-lg);
             }
             
             .nav-links.active {
@@ -643,7 +904,15 @@
             }
             
             .nav-links li {
-                margin: 1rem 0;
+                margin: 0.8rem 0;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                padding: 0.8rem 0;
+                display: block;
+                width: 100%;
+                font-size: 1rem;
             }
             
             .hero {
@@ -656,11 +925,10 @@
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
             .hero-btns {
-                display: flex;
                 flex-direction: column;
                 align-items: center;
             }
@@ -677,6 +945,10 @@
             .section-title {
                 font-size: 2rem;
             }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
         }
         
         @media (max-width: 576px) {
@@ -690,6 +962,7 @@
             
             .section-title {
                 font-size: 1.8rem;
+                margin-bottom: 3rem;
             }
             
             .portfolio-filter {
@@ -698,7 +971,24 @@
             }
             
             .filter-btn {
+                width: 100%;
+                max-width: 200px;
                 margin: 0.3rem 0;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-left: 0;
+                margin-bottom: 1.5rem;
             }
         }
     </style>
@@ -706,7 +996,10 @@
 <body>
     <!-- نوار ناوبری -->
     <nav class="navbar">
-        <a href="#" class="logo">مهدی<span> رحمانی</span></a>
+        <a href="#" class="logo">
+            <i class="fas fa-code"></i>
+            <span>مهدی رحمانی</span>
+        </a>
         <div class="menu-toggle">
             <i class="fas fa-bars"></i>
         </div>
@@ -721,16 +1014,24 @@
 
     <!-- بخش هیرو -->
     <section id="home" class="hero">
+        <div class="hero-shape"></div>
+        <div class="hero-shape-2"></div>
         <div class="hero-content fade-in">
             <h1>سلام، من <span>مهدی رحمانی</span> هستم</h1>
-            <p>توسعه‌دهنده حرفه‌ای وب و موبایل با سال‌ها تجربه در طراحی و پیاده‌سازی پروژه‌های نرم‌افزاری پیشرفته</p>
+            <p>توسعه‌دهنده فول استک (Full Stack) با تخصص در طراحی و پیاده‌سازی سیستم‌های نرم‌افزاری پیشرفته و مدرن</p>
             <div class="hero-btns">
-                <a href="#portfolio" class="btn btn-outline delay-1">نمونه کارها</a>
-                <a href="#contact" class="btn delay-2">تماس با من</a>
+                <a href="#portfolio" class="btn btn-outline delay-1">
+                    <i class="far fa-eye"></i>
+                    نمونه کارها
+                </a>
+                <a href="#contact" class="btn delay-2">
+                    <i class="far fa-paper-plane"></i>
+                    تماس با من
+                </a>
             </div>
             <div class="social-icons delay-3">
                 <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
@@ -739,34 +1040,34 @@
 
     <!-- بخش درباره من -->
     <section id="about" class="about">
-        <h2 class="section-title">درباره من</h2>
+        <h2 class="section-title fade-in">درباره من</h2>
         <div class="about-content">
             <div class="about-img fade-in">
-                <img src="/4585c799-b6a1-449f-bb44-3270f5e59e27.jpeg" alt="مهدی رحمانی">
+                <img src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="مهدی رحمانی">
             </div>
             <div class="about-text fade-in delay-1">
-                <h3>مهندس نرم‌افزار و توسعه‌دهنده فول استک</h3>
-                <p>من مهدی رحمانی، مهندس نرم‌افزار با بیش از 8 سال تجربه در توسعه وب و موبایل هستم. تخصص اصلی من در طراحی و پیاده‌سازی سیستم‌های تحت وب پیشرفته با استفاده از آخرین تکنولوژی‌ها است.</p>
+                <h3>مهندس نرم‌افزار و توسعه‌دهنده فول استک (Full Stack)</h3>
+                <p>من مهدی رحمانی، مهندس نرم‌افزار با بیش از 4 سال تجربه در توسعه وب و موبایل هستم. تخصص اصلی من در طراحی و پیاده‌سازی سیستم‌های تحت وب پیشرفته با استفاده از آخرین تکنولوژی‌ها است.</p>
                 <p>در طول این سال‌ها موفق به تکمیل ده‌ها پروژه موفق برای شرکت‌های داخلی و بین‌المللی شده‌ام و همواره به دنبال یادگیری و استفاده از تکنولوژی‌های جدید هستم.</p>
                 
                 <div class="skills">
                     <div class="skill-item">
                         <div class="skill-name">
                             <span>HTML & CSS</span>
-                            <span>95%</span>
+                            <span>100%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%"></div>
+                            <div class="skill-progress" style="width: 100%"></div>
                         </div>
                     </div>
                     
                     <div class="skill-item">
                         <div class="skill-name">
                             <span>JavaScript</span>
-                            <span>90%</span>
+                            <span>93%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
+                            <div class="skill-progress" style="width: 93%"></div>
                         </div>
                     </div>
                     
@@ -796,7 +1097,7 @@
 
     <!-- بخش خدمات -->
     <section id="services" class="services">
-        <h2 class="section-title">خدمات من</h2>
+        <h2 class="section-title fade-in">خدمات من</h2>
         <div class="services-container">
             <div class="service-card fade-in">
                 <div class="service-icon">
@@ -834,16 +1135,16 @@
 
     <!-- بخش نمونه کارها -->
     <section id="portfolio" class="portfolio">
-        <h2 class="section-title">نمونه کارها</h2>
-        <div class="portfolio-filter">
+        <h2 class="section-title fade-in">نمونه کارها</h2>
+        <div class="portfolio-filter fade-in">
             <button class="filter-btn active" data-filter="all">همه</button>
             <button class="filter-btn" data-filter="web">وب</button>
             <button class="filter-btn" data-filter="mobile">موبایل</button>
             <button class="filter-btn" data-filter="design">طراحی</button>
         </div>
         <div class="portfolio-grid">
-            <div class="portfolio-item" data-category="web">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="پروژه 1" class="portfolio-img">
+            <div class="portfolio-item fade-in" data-category="web">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="پروژه 1" class="portfolio-img">
                 <div class="portfolio-overlay">
                     <h3>وبسایت فروشگاهی</h3>
                     <p>یک وبسایت فروشگاهی کامل با سیستم مدیریت محتوا</p>
@@ -854,8 +1155,8 @@
                 </div>
             </div>
             
-            <div class="portfolio-item" data-category="mobile">
-                <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="پروژه 2" class="portfolio-img">
+            <div class="portfolio-item fade-in delay-1" data-category="mobile">
+                <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="پروژه 2" class="portfolio-img">
                 <div class="portfolio-overlay">
                     <h3>اپلیکیشن موبایل</h3>
                     <p>اپلیکیشن مدیریت مالی شخصی برای اندروید و iOS</p>
@@ -866,8 +1167,8 @@
                 </div>
             </div>
             
-            <div class="portfolio-item" data-category="design">
-                <img src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="پروژه 3" class="portfolio-img">
+            <div class="portfolio-item fade-in delay-2" data-category="design">
+                <img src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="پروژه 3" class="portfolio-img">
                 <div class="portfolio-overlay">
                     <h3>طراحی رابط کاربری</h3>
                     <p>طراحی UI/UX برای یک اپلیکیشن سلامت</p>
@@ -878,8 +1179,8 @@
                 </div>
             </div>
             
-            <div class="portfolio-item" data-category="web">
-                <img src="https://images.unsplash.com/photo-1481487196290-c152efe083f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="پروژه 4" class="portfolio-img">
+            <div class="portfolio-item fade-in delay-3" data-category="web">
+                <img src="https://images.unsplash.com/photo-1481487196290-c152efe083f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="پروژه 4" class="portfolio-img">
                 <div class="portfolio-overlay">
                     <h3>پورتال سازمانی</h3>
                     <p>سیستم مدیریت محتوای سازمانی با امکانات پیشرفته</p>
@@ -890,8 +1191,8 @@
                 </div>
             </div>
             
-            <div class="portfolio-item" data-category="mobile">
-                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="پروژه 5" class="portfolio-img">
+            <div class="portfolio-item fade-in delay-1" data-category="mobile">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="پروژه 5" class="portfolio-img">
                 <div class="portfolio-overlay">
                     <h3>اپلیکیشن مسیریابی</h3>
                     <p>اپلیکیشن مسیریابی و نقشه با قابلیت‌های پیشرفته</p>
@@ -902,8 +1203,8 @@
                 </div>
             </div>
             
-            <div class="portfolio-item" data-category="design">
-                <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="پروژه 6" class="portfolio-img">
+            <div class="portfolio-item fade-in delay-2" data-category="design">
+                <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="پروژه 6" class="portfolio-img">
                 <div class="portfolio-overlay">
                     <h3>طراحی برند</h3>
                     <p>طراحی هویت بصری برای یک استارتاپ فناوری</p>
@@ -918,7 +1219,7 @@
 
     <!-- بخش تماس -->
     <section id="contact" class="contact">
-        <h2 class="section-title">تماس با من</h2>
+        <h2 class="section-title fade-in">تماس با من</h2>
         <div class="contact-container">
             <div class="contact-info">
                 <div class="contact-card fade-in">
@@ -927,7 +1228,7 @@
                     </div>
                     <div class="contact-text">
                         <h3>آدرس</h3>
-                        <p>تهران، خیابان آزادی، کوچه فلان، پلاک 12</p>
+                        <p>ایران، تهران</p>
                     </div>
                 </div>
                 
@@ -937,7 +1238,7 @@
                     </div>
                     <div class="contact-text">
                         <h3>تلفن</h3>
-                        <p>+98 912 345 6789</p>
+                        <a href="tel:+989352250294">00989352250294 / 0093790812955</a>
                     </div>
                 </div>
                 
@@ -947,7 +1248,7 @@
                     </div>
                     <div class="contact-text">
                         <h3>ایمیل</h3>
-                        <p>mehdi.rahmani@example.com</p>
+                        <a href="mailto:mehdi.rahmani@example.com">mahdirahmani77z@gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -970,7 +1271,10 @@
                         <textarea class="form-control" placeholder="پیام شما" required></textarea>
                     </div>
                     
-                    <button type="submit" class="btn">ارسال پیام</button>
+                    <button type="submit" class="btn">
+                        <i class="far fa-paper-plane"></i>
+                        ارسال پیام
+                    </button>
                 </form>
             </div>
         </div>
@@ -979,7 +1283,10 @@
     <!-- فوتر -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-logo">مهدی<span> رحمانی</span></div>
+            <div class="footer-logo">
+                <i class="fas fa-code"></i>
+                <span>مهدی رحمانی</span>
+            </div>
             <ul class="footer-links">
                 <li><a href="#home">خانه</a></li>
                 <li><a href="#about">درباره من</a></li>
@@ -989,7 +1296,7 @@
             </ul>
             <div class="footer-social">
                 <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
@@ -1009,6 +1316,7 @@
         
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
         
         // اسکرول نرم
@@ -1023,6 +1331,7 @@
                 // بستن منو در حالت موبایل
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
                 }
             });
         });
@@ -1065,12 +1374,15 @@
         
         // نمایش دکمه بازگشت به بالا
         const backToTopBtn = document.querySelector('.back-to-top');
+        const navbar = document.querySelector('.navbar');
         
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 backToTopBtn.classList.add('active');
+                navbar.classList.add('scrolled');
             } else {
                 backToTopBtn.classList.remove('active');
+                navbar.classList.remove('scrolled');
             }
         });
         
@@ -1090,8 +1402,7 @@
                 const windowHeight = window.innerHeight;
                 
                 if (elementTop < windowHeight - 100) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+                    element.classList.add('visible');
                 }
             });
         }
@@ -1115,6 +1426,12 @@
         
         // اجرای اولیه برای عناصری که در viewport هستند
         checkScroll();
+        
+        // اجرای انیمیشن برای عناصر در هنگام لود صفحه
+        window.addEventListener('load', () => {
+            checkScroll();
+            checkAboutSection();
+        });
     </script>
 </body>
 </html>
